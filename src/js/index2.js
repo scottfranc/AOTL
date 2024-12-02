@@ -508,6 +508,122 @@ const scroll = () => {
     });
 };
 
+// Add this function after your existing scroll function
+const createLights = () => {
+    const colors = ['gold', 'silver', 'white'];
+    const numLights = 50;
+    
+    for (let i = 0; i < numLights; i++) {
+        const light = document.createElement('div');
+        light.className = `light ${colors[Math.floor(Math.random() * colors.length)]}`;
+        
+        // Random position
+        light.style.left = `${Math.random() * 100}vw`;
+        light.style.top = `${Math.random() * 100}vh`;
+        document.body.appendChild(light);
+
+        // Animate each light
+        gsap.to(light, {
+            opacity: Math.random() * 0.7 + 0.3,
+            duration: 1 + Math.random() * 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: Math.random() * 2
+        });
+
+        // Optional: Subtle position animation
+        gsap.to(light, {
+            y: '+=10',
+            duration: 2 + Math.random() * 4,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: Math.random() * 2
+        });
+    }
+};
+
+// Update ornaments with more subtle winter/cozy themed emojis
+const createOrnaments = () => {
+    const ornaments = ['✨', '🕯️', '❄️', '⭐', '🌟', '✧'];  // More subtle symbols
+    const numOrnaments = 12; // Reduced number for less cluttered feel
+    
+    for (let i = 0; i < numOrnaments; i++) {
+        const ornament = document.createElement('div');
+        ornament.className = 'ornament';
+        ornament.innerHTML = ornaments[Math.floor(Math.random() * ornaments.length)];
+        
+        ornament.style.left = `${Math.random() * 100}vw`;
+        ornament.style.top = `${Math.random() * 100}vh`;
+        ornament.style.fontSize = `${Math.random() * 15 + 15}px`; // Slightly smaller
+        ornament.style.opacity = '0.2';
+        document.body.appendChild(ornament);
+
+        gsap.to(ornament, {
+            y: '+=20',
+            rotation: Math.random() * 180,
+            duration: 4 + Math.random() * 4,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: Math.random() * 2
+        });
+    }
+};
+
+// Add candlelight effect
+const createCandleLights = () => {
+    const numCandles = 4;
+    
+    for (let i = 0; i < numCandles; i++) {
+        const candle = document.createElement('div');
+        candle.className = 'candle-light';
+        
+        // Position candles along the sides
+        candle.style.left = i < 2 ? '5%' : '95%';
+        candle.style.top = i % 2 === 0 ? '30%' : '70%';
+        document.body.appendChild(candle);
+
+        // Flickering animation
+        gsap.to(candle, {
+            opacity: 0.5,
+            scale: 0.8,
+            duration: 0.5 + Math.random(),
+            repeat: -1,
+            yoyo: true,
+            ease: "rough({ template: none.out, strength: 1, points: 20, taper: 'none', randomize: true, clamp: false})"
+        });
+    }
+};
+
+// Add snow effect
+const createSnowfall = () => {
+    const numSnowflakes = 50;
+    
+    for (let i = 0; i < numSnowflakes; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        snowflake.innerHTML = '❄';
+        
+        snowflake.style.left = `${Math.random() * 100}vw`;
+        snowflake.style.top = `-${Math.random() * 20}px`;
+        snowflake.style.fontSize = `${Math.random() * 10 + 5}px`;
+        snowflake.style.opacity = Math.random() * 0.4 + 0.1;
+        document.body.appendChild(snowflake);
+
+        gsap.to(snowflake, {
+            y: `${window.innerHeight + 100}px`,
+            x: `${(Math.random() - 0.5) * 200}px`,
+            rotation: Math.random() * 360 * 2,
+            duration: 5 + Math.random() * 10,
+            repeat: -1,
+            ease: "none",
+            delay: Math.random() * 5
+        });
+    }
+};
+
 // Preload images and fonts
 preloadFonts('cvn8slu').then(() => {
     // Remove loader (loading class)
@@ -516,4 +632,8 @@ preloadFonts('cvn8slu').then(() => {
     initSmoothScrolling();
     // GSAP Scroll Triggers
     scroll();
+    createLights();
+    createOrnaments();
+    createCandleLights();
+    createSnowfall();
 });

@@ -152,6 +152,10 @@ main {
 	align-items: start;
 	font-weight: 600;
 	font-size: 14px;
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(10px);
+	border-radius: 10px;
+	box-shadow: 0 4px 30px rgba(139, 25, 25, 0.1);
 }
 
 .frame a:not(.frame__title-back),
@@ -297,6 +301,7 @@ main {
 	text-align: center;
 	display: grid;
 	gap: 2rem;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .content__title--left {
@@ -506,4 +511,115 @@ main {
 	.frame__demos {
 		justify-self: end;
 	}
+}
+
+/* Add these styles for the lights */
+.light {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 10px #fff,
+              0 0 20px #fff,
+              0 0 30px #FFD700;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+}
+
+.light.gold { background-color: #FFD700; }
+.light.silver { background-color: #C0C0C0; }
+.light.white { background-color: #FFFFFF; }
+
+/* Add warm overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        rgba(139, 25, 25, 0.05),
+        rgba(165, 42, 42, 0.03),
+        rgba(205, 133, 63, 0.05)
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ornament {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(0.5px);
+    transform-origin: center;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Add a subtle text shadow to all content for depth */
+.content__title {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add warm box shadows to frame elements */
+.frame {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(139, 25, 25, 0.1);
+}
+
+/* Add a subtle glow to demo numbers */
+.frame__demo {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Add some warmth to the scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(139, 25, 25, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(139, 25, 25, 0.2);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 25, 25, 0.3);
+}
+
+/* Candle light effect */
+.candle-light {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 247, 174, 0.8) 0%,
+        rgba(255, 197, 143, 0.3) 40%,
+        transparent 70%
+    );
+    filter: blur(3px);
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: 0 0 40px rgba(255, 197, 143, 0.4);
+}
+
+/* Snowflake styling */
+.snowflake {
+    position: fixed;
+    color: white;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+    z-index: 1;
+    filter: blur(0.5px);
 }
